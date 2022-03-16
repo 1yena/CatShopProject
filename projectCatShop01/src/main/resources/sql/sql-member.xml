@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.java404.mapper.CatShopMemberMapper">
+
+	<select id="selectIsUseMember" parameterType="String" resultType="int">
+		<![CDATA[ 
+			SELECT
+				COUNT(*) AS cnt
+			FROM
+				t_member
+			WHERE
+				user_id = #{userId}
+		]]>
+	</select>
+	
+	<select id="selectIsIdPwMember" parameterType="Map" resultType="int">
+		<![CDATA[ 
+			SELECT
+				COUNT(*) AS cnt
+			FROM
+				t_member
+			WHERE
+				user_id = #{userId}
+			AND
+				user_pw = #{userPw}
+		]]>
+	</select>
+	
+	<insert id="joinMember" parameterType="com.bitc.java404.dto.MemberDto">
+	<![CDATA[ 
+		insert into t_member (user_id, user_pw, user_name, user_email, user_phone, user_birth, 
+								user_addr1, user_addr2) 
+		value (#{userId}, #{userPw}, #{userName}, #{userEmail}, #{userPhone}, #{userBirth}, #{userAddr1}, #{userAddr2})
+	
+	]]>
+	</insert>
+	
+	<select id="selectMember" parameterType="Map" resultType="com.bitc.java404.dto.MemberDto">
+		<![CDATA[ 
+			SELECT 
+				user_id, user_name, user_email, user_phone, user_birth
+			FROM
+				t_member
+			WHERE
+				user_id = #{userId}
+			AND
+				user_pw = #{userPw}
+		]]>
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper >

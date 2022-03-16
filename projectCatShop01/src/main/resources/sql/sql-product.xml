@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.java404.mapper.CatShopProductMapper">
+
+	<!-- 상품 상세 조회 -->
+	<select id="productDetailList" parameterType="int" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				*
+			FROM
+				t_product
+			WHERE
+				product_seq = #{productSeq}
+		]]>
+	</select>
+	<!-- 메인 추천 상품 조회 -->
+	<select id="selectHotList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_state = 'hot'
+			limit 10
+		]]>
+	</select>
+	<!-- 메인 신상품 조회 -->
+	<select id="selectNewList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_state = 'new'
+			 limit 10
+		]]>
+	</select>
+	
+	
+	<!-- 상품 등록 -->
+	<insert id="proinsert" parameterType="com.bitc.java404.dto.ProductDto" useGeneratedKeys="true" keyProperty="productSeq">
+		<![CDATA[
+			INSERT INTO
+				t_product (product_brand, product_name, product_price, product_sale, product_origin, product_date, 
+							product_deliver, product_state, product_cate, product_img)
+			VALUES
+				(#{productBrand}, #{productName}, #{productPrice}, #{productSale}, #{productOrigin}, #{productDate}, 
+				#{productDeliver}, #{productState}, #{productCate}, #{productImg})
+		]]>
+	</insert>
+	<!-- 명소 수정 -->
+	<update id="catUpdateBoard" parameterType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			UPDATE
+				t_product
+			SET
+				product_brand = #{productBrand}, product_name = #{productName}, product_price = #{productPrice}, product_sale = #{productSale}, 
+				product_origin = #{productOrigin}, product_date = #{productDate}, product_deliver = #{productDeliver}, product_cate = #{productCate}, 
+				product_state = #{productState}, product_img = #{productImg}
+			WHERE
+				product_seq = #{productSeq}
+		]]>
+	</update>
+	
+	<!-- 사료 조회 -->
+	<select id="selectAllList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 100
+			AND
+			 	product_state = 101
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectKittenList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 100
+			AND
+				product_state = 102
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectAdultList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 100
+			AND
+				product_state = 103
+			LIMIT
+				10
+		]]>
+	</select>
+	
+	<!--간식 조회 -->
+	<select id="selectStapletList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 200
+			AND
+			 	product_state = 201
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectChurList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 200
+			AND
+				product_state = 202
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectDryList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 200
+			AND
+				product_state = 203
+			LIMIT
+				10
+		]]>
+	</select>
+	
+	<!--모래 조회 -->
+	<select id="selectClotbentoList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 300
+			AND
+			 	product_state = 301
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectClotnatureList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 300
+			AND
+				product_state = 302
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectAbsorbnatureList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 300
+			AND
+				product_state = 303
+			LIMIT
+				10
+		]]>
+	</select>
+	
+	<!--장난감 조회 -->
+	<select id="selectFishingList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 400
+			AND
+			 	product_state = 401
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectDollList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 400
+			AND
+				product_state = 402
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectHouseList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 400
+			AND
+				product_state = 403
+			LIMIT
+				10
+		]]>
+	</select>
+	
+	<!--캣타워 조회 -->
+	<select id="selectSmallList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 500
+			AND
+			 	product_state = 501
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectMiddleList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 500
+			AND
+				product_state = 502
+			LIMIT
+				10
+		]]>
+	</select>
+	<select id="selectLargeList" resultType="com.bitc.java404.dto.ProductDto">
+		<![CDATA[ 
+			SELECT
+				product_seq, product_name, product_sale, product_img
+			FROM
+				t_product
+			WHERE
+				product_cate = 500
+			AND
+				product_state = 503
+			LIMIT
+				10
+		]]>
+	</select>
+
+
+
+</mapper>
