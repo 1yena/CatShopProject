@@ -35,6 +35,11 @@ public class CatShopMemberServiceImpl implements CatShopMemberService {
 		catmapper.joinMember(member);
 	}
 
+	@Override
+	public MemberDto userDetailList(String userId) throws Exception {
+		return catmapper.userDetailList(userId);
+	}
+
 	
 	
 	

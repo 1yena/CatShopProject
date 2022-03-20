@@ -12,6 +12,8 @@ public interface CatShopMemberService {
 	
 	void joinMember(MemberDto member) throws Exception;
 
+	MemberDto userDetailList(String userId) throws Exception;
+
 	
 
 }

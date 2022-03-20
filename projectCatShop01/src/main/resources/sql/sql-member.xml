@@ -50,21 +50,17 @@
 		]]>
 	</select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<!-- 마이페이지 -->
+	<select id="userDetailList" resultType="com.bitc.java404.dto.MemberDto">
+		<![CDATA[ 
+			SELECT
+				*
+			FROM
+				t_member
+			WHERE
+				user_id = #{userId}
+		]]>
+	</select>
 
 
 

@@ -47,7 +47,8 @@ public class CatShopController {
 		return mv;
 	}
 	
-	///////////////****************관광지 수정 페이지*****************///////////////////
+	
+	///////////////****************상품 수정 페이지*****************///////////////////
 	@RequestMapping(value="/catshop/catupdate/{productSeq}")
 		public ModelAndView catupdate(@PathVariable("productSeq") int productSeq) throws Exception {
 		ModelAndView mv = new ModelAndView("/product/catupdate");
@@ -59,14 +60,14 @@ public class CatShopController {
 	}
 	
 	@RequestMapping(value="/cat/catupdate/{productSeq}", method=RequestMethod.PUT)
-		public String hotUpdateBoard(ProductDto catupdate) throws Exception{
+		public String catUpdateBoard(ProductDto catupdate) throws Exception{
 		productService.catUpdateBoard(catupdate);
 		
 		return "redirect:/catshop/menu";
 	}
 	
 	
-	//////////////////////메뉴/////////////////////////
+	//////////////////////*****************메뉴*******************/////////////////////////
 	@RequestMapping(value="/catshop/menu")
 	public String catshopMenu() throws Exception {
 		return "/main/menu";

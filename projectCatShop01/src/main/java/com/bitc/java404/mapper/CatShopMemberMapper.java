@@ -15,6 +15,8 @@ public interface CatShopMemberMapper {
 	void joinMember(MemberDto member) throws Exception;
 
 	MemberDto selectMember(@Param("userId") String id, @Param("userPw") String pw) throws Exception;
+
+	MemberDto userDetailList(String userId) throws Exception;
 	
 	
 

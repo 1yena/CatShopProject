@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -120,5 +122,18 @@ public class MemberController {
 		
 		return result;
 	}
+	
+	///////////////////////////마이페이지////////////////////////////
+	@RequestMapping(value="/login/myPage/{userId}", method=RequestMethod.GET)
+	public ModelAndView myPage(@PathVariable("userId") String userId, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/login/myPage");
+		
+		MemberDto userDetail = catmember.userDetailList(userId);
+		mv.addObject("userDetail", userDetail);
+		
+		return mv;
+	}
+	
+	
 
 }

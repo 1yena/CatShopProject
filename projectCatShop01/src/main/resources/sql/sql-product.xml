@@ -52,7 +52,7 @@
 				#{productDeliver}, #{productState}, #{productCate}, #{productImg})
 		]]>
 	</insert>
-	<!-- 명소 수정 -->
+	<!-- 상품 수정 페이지 -->
 	<update id="catUpdateBoard" parameterType="com.bitc.java404.dto.ProductDto">
 		<![CDATA[ 
 			UPDATE
