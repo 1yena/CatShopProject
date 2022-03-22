@@ -65,6 +65,17 @@
 				product_seq = #{productSeq}
 		]]>
 	</update>
+	<!-- 상품 삭제  -->
+	<update id="deleteProduct" parameterType="int">
+		<![CDATA[
+			UPDATE
+				t_product
+			SET
+				deleted_yn = 'Y'
+			WHERE
+				product_seq = #{product_seq}
+		]]>
+	</update>
 	
 	<!-- 사료 조회 -->
 	<select id="selectAllList" resultType="com.bitc.java404.dto.ProductDto">

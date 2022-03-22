@@ -42,6 +42,11 @@ public class ProductServiceImpl implements ProductService {
 		catmapper.catUpdateBoard(catupdate);
 		
 	}
+	//상품 삭제////////////////////////////////////////////
+	@Override
+	public void deleteProduct(int productSeq) throws Exception {
+		catmapper.deleteProduct(productSeq);
+	}
 	
 	
 	//사료 조회////////////////////////////////////////////
@@ -113,6 +118,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductDto> selectLargeList() throws Exception {
 		return catmapper.selectLargeList();
 	}
+	
 	
 	
 	

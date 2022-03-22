@@ -66,6 +66,14 @@ public class CatShopController {
 		return "redirect:/catshop/menu";
 	}
 	
+	///////////////****************상품 삭제*****************///////////////////
+	@RequestMapping(value="/catupdate/deleteProduct/{productSeq}", method=RequestMethod.DELETE)
+	public String productDelete(@PathVariable("productSeq") int productSeq) throws Exception{
+		productService.deleteProduct(productSeq);
+		return "redirect:/catshop/menu";
+		
+	}
+	
 	
 	//////////////////////*****************메뉴*******************/////////////////////////
 	@RequestMapping(value="/catshop/menu")

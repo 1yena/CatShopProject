@@ -23,6 +23,14 @@ public class CatShopMemberServiceImpl implements CatShopMemberService {
 		
 		return catmapper.selectIsUseMember(userId);
 	}
+	
+	// 회원 정보 수정
+	@Override
+	public void userUpdateBoard(MemberDto userupdate) throws Exception {
+		catmapper.userUpdateBoard(userupdate);
+	}
+	
+	
 
 	@Override
 	public MemberDto selectMember(String id, String pw) throws Exception {
@@ -40,7 +48,6 @@ public class CatShopMemberServiceImpl implements CatShopMemberService {
 		return catmapper.userDetailList(userId);
 	}
 
-	
 	
 	
 

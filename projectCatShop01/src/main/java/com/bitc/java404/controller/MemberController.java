@@ -134,6 +134,25 @@ public class MemberController {
 		return mv;
 	}
 	
+	///////////////****************회원 정보 수정*****************///////////////////
+	@RequestMapping(value="/login/userUPdate/{userId}")
+	public ModelAndView userupdate(@PathVariable("userId") String userId) throws Exception {
+		ModelAndView mv = new ModelAndView("/login/userupdate");
+		
+		MemberDto userup = catmember.userDetailList(userId);
+		mv.addObject("userup", userup);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/login/userUPdate/{userId}", method=RequestMethod.PUT)
+		public String userUpdateBoard(MemberDto userupdate) throws Exception{
+		catmember.userUpdateBoard(userupdate);
+		
+		return "redirect:/login/myPage/{userId}";
+	}
+	
+	
 	
 
 }

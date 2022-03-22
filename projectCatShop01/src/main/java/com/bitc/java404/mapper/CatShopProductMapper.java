@@ -22,6 +22,9 @@ public interface CatShopProductMapper {
 	//상품 수정////////////////////////////////////////////
 	void catUpdateBoard(ProductDto catupdate) throws Exception;
 	
+	//상품 삭제////////////////////////////////////////////
+	void deleteProduct(int productSeq) throws Exception;
+	
 	//사료 조회////////////////////////////////////////////
 	List<ProductDto> selectAllList() throws Exception;
 	List<ProductDto> selectKittenList() throws Exception;
@@ -46,6 +49,7 @@ public interface CatShopProductMapper {
 	List<ProductDto> selectSmallList() throws Exception;
 	List<ProductDto> selectMiddleList() throws Exception;
 	List<ProductDto> selectLargeList() throws Exception;
+	
 	
 	
 	

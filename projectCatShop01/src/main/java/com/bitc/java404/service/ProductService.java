@@ -19,6 +19,9 @@ public interface ProductService {
 	//상품 수정 페이지////////////////////////////////////////////
 	void catUpdateBoard(ProductDto catupdate) throws Exception;
 	
+	//상품 삭제 페이지////////////////////////////////////////////
+	void deleteProduct(int productSeq) throws Exception;
+	
 	//사료 조회////////////////////////////////////////////
 	List<ProductDto> selectAllList() throws Exception;
 	List<ProductDto> selectKittenList() throws Exception;
@@ -43,6 +46,7 @@ public interface ProductService {
 	List<ProductDto> selectSmallList() throws Exception;
 	List<ProductDto> selectMiddleList() throws Exception;
 	List<ProductDto> selectLargeList() throws Exception;
+	
 	
 	
 

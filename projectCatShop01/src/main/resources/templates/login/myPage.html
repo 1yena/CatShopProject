@@ -17,7 +17,7 @@
 			$("#method").val("GET");
 			var frm = $("#frm")[0];
 			/* 접속항 URI에 리소스를 추가 */
-			frm.action = "/userEdit/" + email;
+			frm.action = "/login/userUPdate/" + userId;
 			frm.submit();// 자바스크립트를 이용하여 submit버튼을 누른것과 동일한 이벤트를 발생시켜 서버로 요청
 		});
 	});
@@ -77,10 +77,8 @@
 		<div class="d-flex justify-content-end m-5">
 			<button id ="btn-edit" class="btn btn-primary me-3 mt-5">수정</button>
 		</div>
-          
-              
-              
-       
+
+
     <br>      
 	</main>
 

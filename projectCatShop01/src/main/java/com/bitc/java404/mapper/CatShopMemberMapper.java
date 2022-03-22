@@ -18,6 +18,11 @@ public interface CatShopMemberMapper {
 
 	MemberDto userDetailList(String userId) throws Exception;
 	
+	// 회원 정보 수정
+	void userUpdateBoard(MemberDto userupdate) throws Exception;
+	
+
+	
 	
 
 }
