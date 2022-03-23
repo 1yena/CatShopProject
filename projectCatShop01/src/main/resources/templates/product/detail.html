@@ -25,6 +25,24 @@
 			frm.action = "/catupdate/deleteProduct/" + productSeq;
 			frm.submit();
 		});
+		
+		/*<![CDATA[*/ var dib = /*[[ ${productDetail} ]]*/
+		// 장바구니 추가 버튼
+		$("#btn_dib").on("click", function(e){
+			var datas = {productSeq: dib.productSeq, productName:dib.productName, productSale: dib.productSale}
+			$.ajax({
+				url: '/dib/add',
+				type: 'POST',
+				data: datas,
+				success: function(result){
+						alert("장바구니 추가");
+						location.href="/catshop/menu";
+				},
+				error: function() {
+					alert("ajax 통신 오류 발생");
+				}
+			});
+		});
 	});
 </script>
 
@@ -107,6 +125,9 @@
 					<button type="button" id="btn-delete" class="btn btn-danger">삭제</button>
 				</div>
 			</div>
+				<div class="d-flex justify-content-end me-3 mt-3" th:if="${session.userId} != null">
+					<button id="btn_dib" class="btn btn-primary float-end" type="button">장바구니</button>
+				</div>
 		</div>
 		
 		

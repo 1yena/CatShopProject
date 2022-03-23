@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.bitc.java404.mapper.DibMapper">
+
+	<!-- 장바구니 추가 -->
+	<insert id="addDib" parameterType="com.bitc.java404.dto.DibDto">
+		<![CDATA[
+			insert into 
+				dib (product_seq, product_name, product_sale, user_id)
+			values 
+				(#{productSeq}, #{productName}, #{productSale}, #{userId})
+		]]>
+	</insert>
+	
+	<!-- 장바구니 목록 -->
+	<select id="getDib" parameterType="String" resultType="com.bitc.java404.dto.DibDto">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				dib
+			WHERE
+				user_id = #{userId}
+			AND
+				deleted_yn ='N'
+		]]>
+	</select>
+	
+	<!-- 장바구니 삭제  -->
+	<update id="deleteDib" parameterType="int">
+		<![CDATA[
+			UPDATE
+				dib
+			SET
+				deleted_yn = 'Y'
+			WHERE
+				seq = #{seq}
+		]]>
+	</update>
+
+</mapper>

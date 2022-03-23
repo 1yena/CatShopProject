@@ -1,5 +1,7 @@
 package com.bitc.java404.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bitc.java404.dto.DibDto;
 import com.bitc.java404.dto.MemberDto;
 import com.bitc.java404.service.CatShopMemberService;
+import com.bitc.java404.service.DibService;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private CatShopMemberService catmember;
+	
+	@Autowired
+	private DibService dibService;
 	
 	@RequestMapping(value="/catshop/login") //로그인(뷰)
 	public String login() throws Exception {
@@ -41,7 +48,7 @@ public class MemberController {
 			session.setAttribute("userEmail", member.getUserEmail());
 			session.setAttribute("userPhone", member.getUserPhone());
 			session.setAttribute("userBirth", member.getUserBirth());
-			session.setMaxInactiveInterval(300); //5분 이내에 안 돌아오면 자동으로 세션 삭제(로그아웃)
+			//session.setMaxInactiveInterval(600); //5분 이내에 안 돌아오면 자동으로 세션 삭제(로그아웃)
 			
 			return "redirect:/catshop/login/loginOk";
 			
@@ -129,10 +136,16 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("/login/myPage");
 		
 		MemberDto userDetail = catmember.userDetailList(userId);
+		
+		List<DibDto> dibList = dibService.dibList(userId);
+		
 		mv.addObject("userDetail", userDetail);
+		mv.addObject("dibList", dibList);
 		
 		return mv;
+		
 	}
+
 	
 	///////////////****************회원 정보 수정*****************///////////////////
 	@RequestMapping(value="/login/userUPdate/{userId}")

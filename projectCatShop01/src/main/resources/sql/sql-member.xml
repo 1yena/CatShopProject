@@ -29,12 +29,11 @@
 	</select>
 	
 	<insert id="joinMember" parameterType="com.bitc.java404.dto.MemberDto">
-	<![CDATA[ 
-		insert into t_member (user_id, user_pw, user_name, user_email, user_phone, user_birth, 
-								user_addr1, user_addr2) 
-		value (#{userId}, #{userPw}, #{userName}, #{userEmail}, #{userPhone}, #{userBirth}, #{userAddr1}, #{userAddr2})
-	
-	]]>
+		<![CDATA[ 
+			insert into t_member (user_id, user_pw, user_name, user_email, user_phone, user_birth, 
+									user_addr1, user_addr2) 
+			value (#{userId}, #{userPw}, #{userName}, #{userEmail}, #{userPhone}, #{userBirth}, #{userAddr1}, #{userAddr2})
+		]]>
 	</insert>
 	
 	<select id="selectMember" parameterType="Map" resultType="com.bitc.java404.dto.MemberDto">
