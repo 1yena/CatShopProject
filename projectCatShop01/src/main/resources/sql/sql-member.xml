@@ -67,8 +67,19 @@
 			UPDATE
 				t_member
 			SET
-				user_id = #{userId}, user_pw = #{userPw}, user_name = #{userName}, user_email = #{userEmail}, user_phone = #{userPhone}, 
+				user_name = #{userName}, user_email = #{userEmail}, user_phone = #{userPhone}, 
 				user_birth = #{userBirth}, user_addr1 = #{userAddr1}, user_addr2 = #{userAddr2}
+			WHERE
+				user_id = #{userId}
+		]]>
+	</update>
+	<!-- 회원 삭제  -->
+	<update id="deleteUser" parameterType="String">
+		<![CDATA[
+			UPDATE
+				t_member
+			SET
+				deleted_yn = 'Y'
 			WHERE
 				user_id = #{userId}
 		]]>

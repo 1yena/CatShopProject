@@ -11,6 +11,8 @@ public interface CatShopMemberService {
 	// 회원 정보 수정
 	void userUpdateBoard(MemberDto userupdate) throws Exception;
 	
+	// 회원 정보 삭제
+	void deleteUser(String userId) throws Exception;
 	
 	// 회원 조회
 	MemberDto selectMember(String id, String pw) throws Exception;
@@ -20,6 +22,8 @@ public interface CatShopMemberService {
 
 	// 회원 정보 상세 조회
 	MemberDto userDetailList(String userId) throws Exception;
+
+	
 
 	
 

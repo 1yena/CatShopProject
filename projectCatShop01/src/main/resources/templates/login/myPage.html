@@ -12,7 +12,7 @@
 	$(document).ready(function() {
 		var userId = $("#userId").val();
 		
-		$(".btn-edit").on("click", function() {
+		$("#btn-edit").on("click", function() {
 			/* id값이 method이고 name값이 _method인 input 태그의 value값을 PUT으로 변경 */
 			$("#method").val("GET");
 			var frm = $("#frm")[0];
@@ -20,6 +20,20 @@
 			frm.action = "/login/userUPdate/" + userId;
 			frm.submit();// 자바스크립트를 이용하여 submit버튼을 누른것과 동일한 이벤트를 발생시켜 서버로 요청
 		});
+		
+		$("#btn-delete").on("click", function() {
+			$("#method").val("DELETE");
+			var frm = $("#frm")[0];
+			frm.action = "/login/deleteUser/" + userId;
+			frm.submit();
+		});
+		/* 		$("#btn-delete").on("click", function() { */
+		/* id값이 method이고 name값이 _method인 input 태그의 value값을 DELETE으로 변경 */
+		/* $("#method").val("DELETE");
+		var frm = $("#frm")[0];
+		frm.action = "/restBoard/delete/" + idx;
+		frm.submit();
+		}); */
 	});
 </script>
 
@@ -34,6 +48,10 @@
         <form id="frm" method="POST">
               <div class="row mb-3" th:if="${#lists.size(userDetail)} > 0" th:each="item : ${userDetail}">
 					
+					<!-- 인식할 userId 받아옴 -->
+					<input type="hidden" id="userId" name="userId" th:value="${item.userId}">
+					<!-- 이게 있어야 DELETE 쓸 때 오류 없음 -->
+					<input type="hidden" id="method" name="_method" value="1">
 					
 					<div class="col-6">
 					<div class="my-3">
@@ -73,10 +91,19 @@
              </form>
           </div>
           
-          
-		<div class="d-flex justify-content-end m-5">
-			<button id ="btn-edit" class="btn btn-primary me-3 mt-5">수정</button>
+        <div class="" th:if="${session.userId} == ${userDetail.userId}">
+			<div class="justify-content-end m-5">
+				<button type="button" id ="btn-edit" class="btn btn-primary me-3 mt-5">수정</button>
+				<button type="button" id="btn-delete" class="btn btn-danger float-end me-3">탈퇴</button>
+			</div>
 		</div>
+		
+		<!-- <div class="justify-content-end mt-5" th:if="${session.email} != null">
+			<button id="btn_dib" class="btn btn-primary float-end" type="button">찜하기</button>
+		</div>
+		<div class="justify-content-end mt-5" th:if="${session.email}=='qwe123@qwe123'">
+			<button id ="btn-edit" class="btn btn-primary float-end me-3">수정</button>
+		</div> -->
 
 
     <br>      

@@ -149,9 +149,17 @@ public class MemberController {
 		public String userUpdateBoard(MemberDto userupdate) throws Exception{
 		catmember.userUpdateBoard(userupdate);
 		
-		return "redirect:/login/myPage/{userId}";
+//		return "redirect:/login/myPage/{userId}";
+		return "redirect:/login/myPage/" + userupdate.getUserId();
 	}
 	
+	///////////////****************회원 삭제*****************///////////////////
+	@RequestMapping(value="/login/deleteUser/{userId}", method=RequestMethod.DELETE)
+		public String productDelete(@PathVariable("userId") String userId) throws Exception{
+		catmember.deleteUser(userId);
+		return "redirect:/catshop/menu";
+	
+	}
 	
 	
 

@@ -40,6 +40,7 @@
               <div class="row mb-3" th:if="${#lists.size(productDetail)} > 0" th:each="item : ${productDetail}">
 					
 					<input type="hidden" id="productSeq" name="productSeq" th:value="${item.productSeq}">
+					<input type="hidden" id="method" name="_method" value="1">
 					
 					<div class="my-3 col-6">
 						<img class="" th:src="@{${item.productImg}}" style="height: 500px; width: 500px;">
@@ -97,16 +98,15 @@
               
              
              </form>
-          </div>
-          
-		<div class="" th:if="${session.userId} == god">
-			<div class="d-flex justify-content-end">
-				<button id ="btn-edit" class="btn btn-primary me-3 mt-5">수정</button>
+             
+			<div class="d-flex justify-content-end" th:if="${session.userId} == god">
+				<div class="me-3">
+					<button type="button" id ="btn-edit" class="btn btn-primary">수정</button>
+				</div>
+				<div class="me-3" th:if="${session.userId} == god">
+					<button type="button" id="btn-delete" class="btn btn-danger">삭제</button>
+				</div>
 			</div>
-			<div class="" th:if="${session.userId} == god">
-				<button type="button" id="btn-delete" class="btn btn-danger float-end me-3">삭제</button>
-			</div>
-			
 		</div>
 		
 		

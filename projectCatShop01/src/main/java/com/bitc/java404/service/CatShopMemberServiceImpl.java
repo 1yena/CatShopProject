@@ -30,6 +30,13 @@ public class CatShopMemberServiceImpl implements CatShopMemberService {
 		catmapper.userUpdateBoard(userupdate);
 	}
 	
+	// 회원 정보 삭제
+	@Override
+	public void deleteUser(String userId) throws Exception {
+		catmapper.deleteUser(userId);
+		
+	}
+	
 	
 
 	@Override
@@ -47,6 +54,8 @@ public class CatShopMemberServiceImpl implements CatShopMemberService {
 	public MemberDto userDetailList(String userId) throws Exception {
 		return catmapper.userDetailList(userId);
 	}
+
+	
 
 	
 	
