@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitc.java404.dto.DibDto;
+import com.bitc.java404.dto.MemberDto;
+import com.bitc.java404.service.CatShopMemberService;
 import com.bitc.java404.service.DibService;
 
 
@@ -23,6 +25,8 @@ public class DibController {
 	
 	@Autowired
 	private DibService dibService;
+	@Autowired
+	private CatShopMemberService catmember;
 	
 	@ResponseBody
 	@RequestMapping(value = "/dib/add", method = RequestMethod.POST)
@@ -59,6 +63,21 @@ public class DibController {
 		result.put("result", "success");
 
 		return result;
+	}
+	
+	// 구매 페이지
+	@RequestMapping(value = "/buy", method = RequestMethod.GET)
+	public String buy(Model model, HttpSession session) throws Exception {
+		
+		String userId = (String) session.getAttribute("userId");
+		
+		MemberDto userDetail = catmember.userDetailList(userId);
+		List<DibDto> dibList = dibService.dibList(userId);
+		
+		model.addAttribute("userDetail", userDetail);
+		model.addAttribute("dibList", dibList);
+		
+		return "/product/buy";
 	}
 	
 

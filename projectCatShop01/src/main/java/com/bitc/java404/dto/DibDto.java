@@ -10,6 +10,7 @@ public class DibDto {
 	private String userId;
 	private String productName;
 	private String productSale;
+	private String productCount;
 	private char deletedYn;
 	
 }

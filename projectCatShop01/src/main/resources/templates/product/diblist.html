@@ -19,6 +19,10 @@
 				event.preventDefault();
 				location.assign("/catshop");
 			});
+			$("#btn-buy").click(function(event) {
+				event.preventDefault();
+				location.assign("/buy");
+			});
 
 			$(".btn-delete").on("click", function() {
 				var seq = $(this).children("span").text();
@@ -68,8 +72,11 @@
 							<div class="body ms-5">
 								<h5 class="card-text m-1" th:text="'상품명 : ' + ${list.productName}"></h5>
 								<h5 class="card-text m-1" th:text="'가격 : ' + ${list.productSale}"></h5>
+								<h5 class="card-text m-1" th:text="'수량 : ' + ${list.productCount}"></h5>
 							</div>
+							
 						</div>
+						
 						
 						<div class="col me-5" style="display: flex; align-items: center; justify-content: center;">
 							<button type="button" id="btn-delete" class="btn btn-danger float-end btn-delete">
@@ -78,6 +85,8 @@
 						</div>
 						
 					</div>
+					
+					
 				</div>
 
 				<div th:unless="${#lists.size(dibList)} > 0" class="text-center">
@@ -85,11 +94,14 @@
 						<h3>장바구니 내역 없습니다.</h3>
 					</div>
 				</div>
-
-
+			
+			
 			<div class="row">
 				<div class="col gap-2 text-center m-5" style="width: 200px;">
-					<button class="btn btn-secondary btn-lg btn-blocks mt-2 mx-3 btn-home" id="btn-home">확인</button>
+					<button class="btn btn-secondary btn-lg btn-blocks mt-2 mx-3 btn-home" id="btn-buy">구매하기</button>
+				</div>
+				<div class="col gap-2 text-center m-5" style="width: 200px;">
+					<button class="btn btn-secondary btn-lg btn-blocks mt-2 mx-3 btn-home" id="btn-home">메인</button>
 				</div>
 			</div>
 				

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>구매 확인</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script th:inline="javascript">
+	$(document).ready(function() {
+		$("#btn-home").on("click", function() {
+			location.href="/catshop";
+		});
+		
+		totalPrice();
+	});
+	
+	function totalPrice() {
+		/*<![CDATA[*/ var dib = /*[[ ${dibList} ]]*/;
+			
+		var total = 0;
+		
+		for (var i = 0; i < dib.length; i++) {
+			var etc = Number(dib[i].productCount);
+			var price = Number(convertPrice(dib[i].productSale));
+			
+			total = total + (etc * price);
+		}
+		
+		total = total + 2000;
+		
+		$("#totalPrice > h3").text("총액 : " + total + "원");
+	}
+	
+	function convertPrice(price) {
+		var result = "";
+		var temp = price.split(",");
+		
+		result = temp.join("");
+		
+		return result;
+	}
+</script>
+
+</head>
+<body>
+
+	<!-- <header th:include="layout/header :: header"></header> -->
+	<header th:include="layout/header :: header(${session})"></header>
+	
+	<main class="container" style="margin-top: 170px">
+	<div class="container">
+		<div class="rounded p-5 my-3 bg-primary bg-opacity-25">
+			<h1 class="text-center">구매 내역 확인</h1>
+		</div>
+		<div class="row">
+			<div class="col-6 mx-auto border-top border-bottom rounded p-4">
+				<h3 class="text-center" th:if="${session.userId} != null" th:text="|${session.userId} 님 구매 내역을 확인해주세요|"></h3>
+			</div>
+		</div>
+		
+			<div id="items" class="border-top shadow py-0 bg-white rounded my-3" style="border-radius: 40px;">
+				<div class="d-flex justify-content-between py-2 border-bottom" th:if="${#lists.size(dibList)} > 0" th:each="list : ${dibList}">
+					<div class="col-10">
+						<div class="body ms-5">
+							<h5 class="card-text m-1" th:text="'상품명 : ' + ${list.productName}"></h5>
+							<h5 class="card-text m-1 price" th:text="'가격 : ' + ${list.productSale}"></h5>
+							<h5 class="card-text m-1 etc" th:text="'수량 : ' + ${list.productCount}"></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="addr" class="border-top shadow py-0 bg-white rounded my-3" style="border-radius: 40px;">
+				<div class="d-flex justify-content-between py-2 border-bottom" th:if="${#lists.size(userDetail)} > 0" th:each="list : ${userDetail}">
+					<div class="col-10">
+						<div class="body ms-5">
+							<h5 class="card-text m-1" th:text="'주소 : ' + ${list.userAddr1}"></h5>
+							<h5 class="card-text m-1" th:text="'상세주소 : ' + ${list.userAddr2}"></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="total" class="border-top shadow py-0 bg-white rounded my-3" style="border-radius: 40px;">
+				<div class="mt-3 ms-5"><h3>배송비 : 2000원</h3></div>
+				<div class="mt-3 ms-5" id="totalPrice"><h3>총액 : </h3></div>
+			</div>
+		
+		<div class="row">
+			<div class="d-grid grap-3 my-3 col-4 mx-auto">
+				<button type="button" class="btn btn-primary" id="btn-home">완료</button>
+			</div>
+		</div>	
+		</div>
+		
+		<br><br><br>
+	</main>
+	
+	<footer th:include="layout/footer :: footer"></footer>
+	
+</body>
+</html>

@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+<script th:inline="javascript">
 	$(document).ready(function() {
 		var productSeq = $("#productSeq").val();
 	
@@ -29,20 +29,55 @@
 		/*<![CDATA[*/ var dib = /*[[ ${productDetail} ]]*/
 		// 장바구니 추가 버튼
 		$("#btn_dib").on("click", function(e){
-			var datas = {productSeq: dib.productSeq, productName:dib.productName, productSale: dib.productSale}
+			var stat = $('#numBox').text();
+			var num = parseInt(stat,10);
+			var datas = {productSeq: dib.productSeq, productName: dib.productName, productSale: dib.productSale, productCount: num}
 			$.ajax({
 				url: '/dib/add',
 				type: 'POST',
 				data: datas,
 				success: function(result){
 						alert("장바구니 추가");
-						location.href="/catshop/menu";
+						location.href="/diblist";
 				},
 				error: function() {
 					alert("ajax 통신 오류 발생");
 				}
 			});
 		});
+		
+		
+		$(function(){
+			$('#decreaseQuantity').click(function(e){
+				e.preventDefault();
+				var stat = $('#numBox').text();
+				var num = parseInt(stat,10);
+				num--;
+					
+				if(num<=0){
+					alert('더이상 줄일수 없습니다.');
+					num =1;
+				}
+				
+				$('#numBox').text(num);
+			});
+			$('#increaseQuantity').click(function(e){
+				e.preventDefault();
+				var stat = $('#numBox').text();
+				var num = parseInt(stat,10);
+				num++;
+			
+				if(num>30){
+					alert('더이상 늘릴수 없습니다.');
+					num=30;
+				}
+				
+				$('#numBox').text(num);
+			});
+		});
+		
+		
+		
 	});
 </script>
 
@@ -108,6 +143,18 @@
 					<div class="my-3">
 						<label for="cate" class="form-label text-warning">소분류</label>
 						<h4 th:text="${item.productCate}" class="m-2" id="cate"></h4>
+					</div>
+					
+					<!-- 주문 수량 -->
+					<div class="my-3">
+					<div class="button_quantity container d-flex text-align-center justify-content-between" id="productCount">
+    					<h3>주문수량</h3>
+    					<span>
+    			 			<a href="#" id="decreaseQuantity" class="btn"><h3>-</h3></a>
+     							<span id="numBox" class="numBox">1</span>
+							<a href="#" id="increaseQuantity"  class="btn"><h3>+</h3></a>
+						</span>
+					</div>
 					</div>
 					
 				</div>

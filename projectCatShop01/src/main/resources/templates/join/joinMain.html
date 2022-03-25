@@ -8,6 +8,41 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+        function check_pw(){
+ 
+            var pw = document.getElementById('pw').value;
+//             var SC = ["!","@","#","$","%"];
+//             var check_SC = 0;
+ 
+            if(pw.length < 1 || pw.length > 16){
+                window.alert('비밀번호는 1글자 이상, 16글자 이하만 이용 가능합니다.');
+                document.getElementById('pw').value='';
+            }
+//             for(var i=0;i<SC.length;i++){
+//                 if(pw.indexOf(SC[i]) != -1){
+//                     check_SC = 1;
+//                 }
+//             }
+//             if(check_SC == 0){
+//                 window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+//                 document.getElementById('pw').value='';
+//             }
+            if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+                if(document.getElementById('pw').value==document.getElementById('pw2').value){
+                    document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                    document.getElementById('check').style.color='blue';
+//                     document.getElementById('check').style.backgroundColor='black';
+                }
+                else{
+                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                    document.getElementById('check').style.color='red';
+                }
+            }
+        }
+    </script>
+
+
 </head>
 <body>
 	<header th:include="layout/header :: header(${session})"></header>
@@ -27,9 +62,15 @@
 						<label for="user-id">USER ID</label>
 					</div>
 					<div class="form-floating my-3">
-						<input type="password" class="form-control" id="user-pw" name="userPw" placeholder="비밀번호를 입력해주세요">
-						<label for="user-pw">USER PASSWORD</label>
+						<input type="password" class="form-control" id="pw" name="userPw" onchange="check_pw()" placeholder="비밀번호를 입력해주세요">
+						<label for="pw">USER PASSWORD</label>
 					</div>
+					
+					<div class="form-floating my-3">
+						<input type="password" class="form-control" id="pw2" name="user-pwOK" onchange="check_pw()" placeholder="비밀번호를 다시한번 입력해주세요">&nbsp;<span id="check"></span>
+						<label for="pw2">비밀번호 확인</label>
+					</div>
+					
 					<div class="form-floating my-3">
 						<input type="text" class="form-control" id="user-name" name="userName" placeholder="이름을 입력해주세요">
 						<label for="user-name">성명</label>

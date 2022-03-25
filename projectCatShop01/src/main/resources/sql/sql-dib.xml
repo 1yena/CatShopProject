@@ -10,9 +10,9 @@
 	<insert id="addDib" parameterType="com.bitc.java404.dto.DibDto">
 		<![CDATA[
 			insert into 
-				dib (product_seq, product_name, product_sale, user_id)
+				dib (product_seq, product_name, product_sale, product_count, user_id)
 			values 
-				(#{productSeq}, #{productName}, #{productSale}, #{userId})
+				(#{productSeq}, #{productName}, #{productSale}, #{productCount}, #{userId})
 		]]>
 	</insert>
 	

@@ -83,12 +83,15 @@ public class MemberController {
 	public String loginOut(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		
+		// removeAttribute : 세션 정보를 삭제함
 		session.removeAttribute("userId");
 		session.removeAttribute("userName");
 		session.removeAttribute("userEmail");
 		session.removeAttribute("userPhone");
 		session.removeAttribute("userBirth");
 		
+		// invalidate : 모든 세션 정보를 삭제함. 보통 얘만 단독으로 사용하진 않음
+		// 남겨야 하는 세션이 있을 경우 사용하면 안 됨. 확인용
 		session.invalidate();
 		
 		return "/login/logOut";
@@ -168,8 +171,20 @@ public class MemberController {
 	
 	///////////////****************회원 삭제*****************///////////////////
 	@RequestMapping(value="/login/deleteUser/{userId}", method=RequestMethod.DELETE)
-		public String productDelete(@PathVariable("userId") String userId) throws Exception{
+		public String productDelete(@PathVariable("userId") String userId, HttpServletRequest request) throws Exception{
 		catmember.deleteUser(userId);
+		
+		HttpSession session = request.getSession();
+		
+		session.removeAttribute("userId");
+		session.removeAttribute("userName");
+		session.removeAttribute("userEmail");
+		session.removeAttribute("userPhone");
+		session.removeAttribute("userBirth");
+		
+		session.invalidate();
+		
+		
 		return "redirect:/catshop/menu";
 	
 	}
